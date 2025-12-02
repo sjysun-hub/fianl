@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LeafMap · Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/LeafMap-Ann-Arbor-logo.png">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+</head>
+
+<body>
+  <!-- Skip link 直接跳到右侧列表 -->
+  <a href="#main-content" class="skip-link">Skip to plant list</a>
+
+  <!-- 顶部：搜索 + 筛选 -->
+  <header class="top-bar" role="banner">
+    <div class="controls-card" aria-label="Search and filters">
+
+      <!-- 搜索框 -->
+      <form class="search-bar" role="search">
+        <label for="plant-search" class="search-label">
+          <!-- 用 aria-label 代替可见文字 -->
+          <input
+            id="plant-search"
+            class="search-input"
+            type="search"
+            placeholder="Search plants by name, Category, or seasons"
+            autocomplete="off"
+            aria-label="Search plants by name, Category, or seasons"
+          >
+
+          <!-- 右侧搜索图标 -->
+          <img
+            src="images/search.png"
+            alt=""
+            class="search-icon"
+            aria-hidden="true"
+          >
+        </label>
+      </form>
+
+      <!-- 过滤器区域 -->
+      <section class="filter-row" aria-label="Plant filters">
+
+        <!-- Seasons -->
+        <div class="filter-group filter-month" role="group" aria-label="Filter by season">
+          <span class="filter-label">Seasons</span>
+
+          <button
+            type="button"
+            class="filter-chip filter-chip-active"
+            data-month="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button type="button" class="filter-chip" data-month="spring" aria-pressed="false">
+            Spring
+          </button>
+          <button type="button" class="filter-chip" data-month="summer" aria-pressed="false">
+            Summer
+          </button>
+          <button type="button" class="filter-chip" data-month="fall" aria-pressed="false">
+            Fall
+          </button>
+          <button type="button" class="filter-chip" data-month="winter" aria-pressed="false">
+            Winter
+          </button>
+        </div>
+
+        <!-- Category -->
+        <div class="filter-group filter-category" role="group" aria-label="Filter by plant type">
+          <span class="filter-label">Category</span>
+
+          <button
+            type="button"
+            class="filter-chip filter-chip-active"
+            data-category="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-tree"
+            aria-pressed="false"
+          >
+            Trees
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-shrub"
+            aria-pressed="false"
+          >
+            Shrubs
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-vine"
+            aria-pressed="false"
+          >
+            Vines
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-perennial"
+            aria-pressed="false"
+          >
+            Perennials
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-fern"
+            aria-pressed="false"
+          >
+            Ferns
+          </button>
+          <button
+            type="button"
+            class="filter-chip"
+            data-category="native-grass"
+            aria-pressed="false"
+          >
+            Grasses
+          </button>
+        </div>
+
+        <!-- Favorites -->
+        <div class="filter-group filter-favorites" role="group" aria-label="Filter favorites">
+          <span class="filter-label">Favorites</span>
+
+          <button
+            type="button"
+            class="filter-chip filter-chip-active"
+            data-favorites="all"
+            aria-pressed="true"
+          >
+            All plants
+          </button>
+
+          <button
+            type="button"
+            class="filter-chip"
+            data-favorites="fav"
+            aria-pressed="false"
+          >
+            <img
+              src="images/icons/marked.png"
+              alt=""
+              class="filter-fav-icon"
+              aria-hidden="true"
+            >
+            My plants
+          </button>
+        </div>
+
+      </section>
+    </div>
+  </header>
+
+  <!-- 主布局：左地图 + 右列表 -->
+  <main class="main-layout">
+    <!-- 左边地图 -->
+    <section class="map-pane" aria-label="Map of Ann Arbor">
+      <div
+        id="map"
+        class="map-surface"
+        role="application"
+        aria-label="Interactive map of Ann Arbor plants"
+      ></div>
+    </section>
+
+    <!-- 右边列表（main-content 是 skip-link 的目标） -->
+    <aside id="main-content" class="list-pane" aria-label="Plant list">
+      <ul
+        class="plant-list"
+        id="plant-list"
+        aria-live="polite"
+      >
+
+      </ul>
+    </aside>
+  </main>
+
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/plants-data.js"></script>
+  <script src="js/list.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
